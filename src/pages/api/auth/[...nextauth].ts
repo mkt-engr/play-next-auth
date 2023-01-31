@@ -8,4 +8,8 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET!!!!!!,
     }),
   ],
+  pages: {
+    //サインインした後にリダイレクトされるページ
+    signIn: "/auth/signin",
+  },
 });

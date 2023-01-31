@@ -1,5 +1,5 @@
 import { SessionProvider } from "next-auth/react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Grid } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 
 export default function App({
@@ -9,7 +9,16 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <ChakraProvider>
-        <Component {...pageProps} />
+        <Grid
+          sx={{
+            h: "100vh",
+            placeItems: "center",
+            px: "5rem",
+            textAlign: "center",
+          }}
+        >
+          <Component {...pageProps} />
+        </Grid>
       </ChakraProvider>
     </SessionProvider>
   );

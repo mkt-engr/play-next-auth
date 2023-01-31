@@ -1,22 +1,28 @@
 import { FC } from "react";
-import { Heading, Button } from "@chakra-ui/react";
+import { Heading, Button, Grid } from "@chakra-ui/react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const Home: FC = () => {
   const { data: session } = useSession();
-
-  const { push } = useRouter();
+  //asPath
+  const { push, asPath } = useRouter();
+  console.table({ asPath });
   const handleSignOut = async () => {
     //サインアウトしたときに/someに遷移する
-    const data = await signOut({ redirect: false, callbackUrl: "/some" });
-
+    const data = await signOut({
+      redirect: false,
+      callbackUrl: "/auth/signin",
+    });
     //redirect:falseにしているのでrouterで遷移させる
     push(data.url);
   };
 
+  const handleSignIn = async () => {
+    push(`/auth/signin?callbackUrl=${asPath}`);
+  };
   return (
-    <div>
+    <Grid placeItems={"center"} gridRowGap={"1rem"}>
       {session ? (
         <>
           <Heading>You are signed in {session.user?.email}</Heading>
@@ -25,10 +31,10 @@ const Home: FC = () => {
       ) : (
         <>
           <Heading>You are not signed in</Heading>
-          <Button onClick={() => signIn()}>Sign in</Button>
+          <Button onClick={() => handleSignIn()}>Sign in</Button>
         </>
       )}
-    </div>
+    </Grid>
   );
 };
 
