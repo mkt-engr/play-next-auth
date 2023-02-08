@@ -2,6 +2,8 @@ import NextAuth from "next-auth/next";
 import GithubProvider from "next-auth/providers/github";
 import TwitterProvider from "next-auth/providers/twitter";
 import GoogleProvider from "next-auth/providers/google";
+import clientPromise from "@/database/connect";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 
 export default NextAuth({
   providers: [
@@ -22,4 +24,5 @@ export default NextAuth({
     //サインインした後にリダイレクトされるページ
     signIn: "/auth/signin",
   },
+  adapter: MongoDBAdapter(clientPromise),
 });
