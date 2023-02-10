@@ -7,7 +7,6 @@ const Home: FC = () => {
   const { data: session } = useSession();
   //asPath
   const { push, asPath } = useRouter();
-  console.table({ asPath });
   const handleSignOut = async () => {
     //サインアウトしたときに/someに遷移する
     const data = await signOut({

@@ -41,7 +41,6 @@ const Signin = () => {
     return <Heading>Checking Authentication ...</Heading>;
   }
 
-  console.table(session?.user);
   if (session) {
     setTimeout(() => {
       push("/");
