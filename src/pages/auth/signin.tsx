@@ -83,7 +83,6 @@ const Signin = () => {
               }}
               textTransform="uppercase"
             >
-              {" "}
               Sign in with {name}
             </Button>
           );
