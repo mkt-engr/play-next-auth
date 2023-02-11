@@ -58,6 +58,7 @@ const Signin = () => {
     if (!email) return false;
     signIn("email", { email, redirect: false });
   };
+
   return (
     <Box>
       <chakra.form onSubmit={handleSubmit}>
